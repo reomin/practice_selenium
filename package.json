@@ -1,0 +1,20 @@
+{
+  "name": "selenium-learning",
+  "version": "1.0.0",
+  "description": "Selenium初級者向け学習コース",
+  "main": "index.js",
+  "scripts": {
+    "ch1-example": "node chapter1/example.js",
+    "ch1-exercise": "node chapter1/exercise.js",
+    "ch2-example": "node chapter2/example.js",
+    "ch2-exercise": "node chapter2/exercise.js",
+    "ch3-example": "node chapter3/example.js",
+    "ch3-exercise": "node chapter3/exercise.js",
+    "ch4-example": "node chapter4/example.js",
+    "ch4-exercise": "node chapter4/exercise.js",
+    "ch5-exercise": "node chapter5/exercise.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.26.0"
+  }
+}

@@ -36,19 +36,53 @@ async function main() {
 
   try {
     // 課題 3-1
-    console.log("=== 課題 3-1 ===");
-    // TODO: ここに実装する
+    await driver.get("https://www.google.com ");
+    const q = await driver.findElement(By.name("q"));
+    await q.sendKeys("hoge");
+    await q.sendKeys(Key.RETURN);
+
+    const pageTitle = await driver.getTitle();
+    console.log(pageTitle);
+
+    const screenshot = await driver.takeScreenshot();
+    writeFileSync("chapter3_result.png", screenshot, "base64");
+    console.log("スクリーンショットを保存しました");
+    // console.log("=== 課題 3-1 ===");
+    // // TODO: ここに実装する
     await driver.sleep(2000);
 
-    // 課題 3-2
-    console.log("\n=== 課題 3-2 ===");
-    // TODO: ここに実装する
-    await driver.sleep(2000);
+    // // 課題 3-2
+    await driver.get("https://the-internet.herokuapp.com/login");
+    const username = await driver.findElement(By.id("username"));
+    await username.sendKeys("tomsmith");
+    const password = await driver.findElement(By.id("password"));
+    await password.sendKeys("SuperSecretPassword!");
 
-    // 課題 3-3
-    console.log("\n=== 課題 3-3 ===");
-    // TODO: ここに実装する
+    const radius = await driver.findElement(By.className("radius"));
+    await radius.click();
+    
+    const h2 = await driver.findElement(By.tagName("h2"));
+    console.log(await h2.getText());
+
+
+    // console.log("\n=== 課題 3-2 ===");
+    // // TODO: ここに実装する
     await driver.sleep(2000);
+    
+    await driver.get("https://the-internet.herokuapp.com/login");
+    const username3 = await driver.findElement(By.id("username"));
+    await username3.sendKeys("wronguser");
+    await username3.clear();
+    await username3.sendKeys("tomsmith");
+    
+    const password3 = await driver.findElement(By.id("password"));
+    await password3.sendKeys("SuperSecretPassword!");
+
+    const radius3 = await driver.findElement(By.className("radius"));
+    await radius3.click();
+
+    const h23 = await driver.findElement(By.tagName("h2"));
+    console.log(await h23.getText());
   } finally {
     await driver.quit();
   }

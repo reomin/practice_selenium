@@ -27,9 +27,16 @@
 const { Builder } = require("selenium-webdriver");
 
 async function main() {
-  const driver = await new Builder().forBrowser("chrome").build();
-
   // TODO: 課題 1-1 と 1-2 をここに実装する
+  let driver;
+  try{
+    driver = await new Builder().forBrowser("chrome").build();
+    await driver.get("https://example.com");
+    const title = await driver.getTitle();
+    console.log(title);
+  }finally{
+    await driver.quit();
+  }
 }
 
 main();

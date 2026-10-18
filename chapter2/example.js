@@ -7,9 +7,9 @@ async function main() {
   try {
     await driver.get("https://example.com");
 
-    // h1タグを取得してテキストを表示
-    const h1 = await driver.findElement(By.tagName("h1"));
-    console.log(`h1のテキスト: ${await h1.getText()}`);
+    // pタグを最初の1件取得してテキストを表示（h1は現在存在しない）
+    const firstP = await driver.findElement(By.tagName("p"));
+    console.log(`最初のpのテキスト: ${await firstP.getText()}`);
 
     // リンクをすべて取得
     const links = await driver.findElements(By.tagName("a"));

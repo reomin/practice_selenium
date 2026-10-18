@@ -40,14 +40,106 @@ async function main() {
     // 課題 4-1
     console.log("=== 課題 4-1 ===");
     // TODO: ここに実装する
+    await driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
+    await driver.manage().setTimeouts({
+      implicit: 10000
+    });
+
+    const start = await driver.findElement(By.id("start"));
+    const button = await start.findElement(By.tagName("button"));
+    await button.click();
+
+    const finish = await driver.findElement(By.id("finish"));
+    const h4 = await finish.findElement(By.tagName("h4"));
+    console.log(await h4.getText());
 
     // 課題 4-2
     console.log("\n=== 課題 4-2 ===");
     // TODO: ここに実装する
+    await driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
+    
+    const start2 = await driver.wait(
+      until.elementLocated(By.id("start")),
+      10000
+    );
+
+     await driver.wait(
+      until.elementIsVisible(start2),
+      5000
+    );
+
+    const button2 = await start2.findElement(By.tagName("button"));
+    await button2.click();
+    // const button = await start.findElement(By.tagName("button"));
+    // await button.click();
+
+    const finish2 = await driver.wait(
+      until.elementLocated(By.id("finish")),
+      10000
+    );
+
+     await driver.wait(
+      until.elementIsVisible(finish2),
+      5000
+    );
+    const h42 = await finish2.findElement(By.tagName("h4"));
+
+    console.log(await h42.getText());
+
 
     // 課題 4-3
     console.log("\n=== 課題 4-3 ===");
     // TODO: ここに実装する
+    await driver.get("https://the-internet.herokuapp.com/login");
+
+    const username = await driver.wait(
+      until.elementLocated(By.id("username")),
+      10000
+    );
+    await driver.wait(
+      until.elementIsVisible(username),
+      5000
+    );
+    await username.sendKeys("tomsmith");
+
+
+    const password = await driver.wait(
+      until.elementLocated(By.id("password")),
+      10000
+    );
+    await driver.wait(
+      until.elementIsVisible(password),
+      5000
+    );
+    await password.sendKeys("SuperSecretPassword!");
+
+    const radius = await driver.wait(
+      until.elementLocated(By.tagName("button")),
+      10000
+    );
+    await driver.wait(
+      until.elementIsVisible(radius),
+      5000
+    );
+
+    await radius.click();
+
+    await driver.wait(
+      until.urlContains("secure"),
+      10000
+    );
+
+    const h2 = await driver.wait(
+      until.elementLocated(By.tagName("h2")),
+      10000
+    );
+
+    const url = await driver.getCurrentUrl();
+
+    console.log(await h2.getText());
+    console.log(url);
+  
+
   } finally {
     await driver.quit();
   }
